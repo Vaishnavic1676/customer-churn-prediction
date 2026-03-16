@@ -101,18 +101,17 @@ if st.button("Predict Churn"):
     "PaymentMethod_Credit card (automatic)":1 if payment=="Credit card (automatic)" else 0
     }
 
-    df = pd.DataFrame([data])
+ df = pd.DataFrame([data])
 
-    for col in MODEL_FEATURES:
-        if col not in df.columns:
-            df[col] = 0
+for col in MODEL_FEATURES:
+    if col not in df.columns:
+        df[col] = 0
 
-    df = df[MODEL_FEATURES]
+df = df[MODEL_FEATURES]
 
-    scaled = scaler.transform(df)
-
-    pred = model.predict(scaled)
-    prob = model.predict_proba(scaled)
+# Predict 
+pred = model.predict(df)
+prob = model.predict_proba(df)
 
     churn_prob = prob[0][1]*100
 
