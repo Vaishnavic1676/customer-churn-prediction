@@ -70,14 +70,21 @@ payment = st.selectbox(
 
 tenure = st.slider("Tenure (months)", 0, 72, 12)
 monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 50.0)
-total_charges = st.number_input("Total Charges", 0.0, 10000.0, 500.0)
+
+# automatically calculate TotalCharges (more realistic)
+total_charges = tenure * monthly_charges
 
 st.divider()
 
 # PREDICTION
 if st.button("Predict Churn"):
 
-    data = {
+    # create dictionary with ALL model features = 0
+    data = {feature: 0 for feature in features}
+
+    # update with actual user inputs
+    data.update({
+
         "SeniorCitizen": 1 if senior == "Yes" else 0,
         "tenure": tenure,
         "MonthlyCharges": monthly_charges,
@@ -101,23 +108,15 @@ if st.button("Predict Churn"):
         "PaymentMethod_Electronic check": 1 if payment == "Electronic check" else 0,
         "PaymentMethod_Mailed check": 1 if payment == "Mailed check" else 0,
         "PaymentMethod_Credit card (automatic)": 1 if payment == "Credit card (automatic)" else 0
-    }
+    })
 
-    # Create dataframe
     df = pd.DataFrame([data])
-
-    # Add missing columns expected by model
-    for col in features:
-        if col not in df.columns:
-            df[col] = 0
-
-    # Arrange columns in correct order
     df = df[features]
 
-    # Scale data
+    # SCALE INPUT
     scaled = scaler.transform(df)
 
-    # Predict
+    # MODEL PREDICTION
     pred = model.predict(scaled)
     prob = model.predict_proba(scaled)
 
@@ -130,7 +129,7 @@ if st.button("Predict Churn"):
     else:
         st.success(f"✅ Customer likely to stay ({100 - churn_prob:.2f}% retention probability)")
 
-    # Probability chart
+    # PROBABILITY CHART
     st.subheader("Churn Probability")
 
     chart = pd.DataFrame({
