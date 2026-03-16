@@ -112,7 +112,7 @@ if st.button("🔍 Predict Churn"):
     df = pd.DataFrame([data])
 
     # Ensure same columns as training data
-    model_features = scaler.feature_names_in_
+   model_features = model.feature_names_in_
 
     for col in model_features:
         if col not in df.columns:
