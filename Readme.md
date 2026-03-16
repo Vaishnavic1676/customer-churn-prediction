@@ -30,3 +30,4 @@ Customers with longer tenure are less likely to churn.
 Two-year contracts significantly reduce churn risk.
 
 The trained model is saved using pickle for future predictions.
+https://customer-churn-prediction-jebacsqyafnopjgpbxrrut.streamlit.app/
