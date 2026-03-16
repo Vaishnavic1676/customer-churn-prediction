@@ -28,8 +28,7 @@ with col2:
 
 st.divider()
 
-#  CUSTOMER INFO 
-
+# CUSTOMER INFO
 st.header("👤 Customer Information")
 
 col1, col2 = st.columns(2)
@@ -42,8 +41,7 @@ with col2:
     senior = st.selectbox("Senior Citizen", ["No", "Yes"])
     dependents = st.selectbox("Dependents", ["No", "Yes"])
 
-#  SERVICE DETAILS 
-
+# SERVICE DETAILS
 st.header("📡 Service Details")
 
 col1, col2 = st.columns(2)
@@ -56,8 +54,7 @@ with col2:
     tech_support = st.selectbox("Tech Support", ["No", "Yes"])
     streaming_tv = st.selectbox("Streaming TV", ["No", "Yes"])
 
-# BILLING 
-
+# BILLING
 st.header("💳 Billing Details")
 
 contract = st.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
@@ -78,8 +75,7 @@ total_charges = st.number_input("Total Charges", 0.0, 10000.0, 500.0)
 
 st.divider()
 
-#  PREDICTION 
-
+# PREDICTION
 if st.button("🔍 Predict Churn"):
 
     data = {
@@ -112,7 +108,7 @@ if st.button("🔍 Predict Churn"):
     df = pd.DataFrame([data])
 
     # Ensure same columns as training data
-   model_features = model.feature_names_in_
+    model_features = model.feature_names_in_
 
     for col in model_features:
         if col not in df.columns:
