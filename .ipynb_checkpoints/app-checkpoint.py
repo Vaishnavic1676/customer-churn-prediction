@@ -71,8 +71,11 @@ payment = st.selectbox(
 tenure = st.slider("Tenure (months)", 0, 72, 12)
 monthly_charges = st.number_input("Monthly Charges", 0.0, 200.0, 50.0)
 
-# realistic TotalCharges
+#  auto uplod
 total_charges = tenure * monthly_charges
+
+# realistic TotalCharges
+#total_charges = tenure * monthly_charges
 
 st.divider()
 
