@@ -1,4 +1,4 @@
-# Customer Churn Prediction
+Customer Churn Prediction
 
 This project predicts whether a telecom customer is likely to churn using machine learning.
 
